@@ -1,10 +1,21 @@
 FROM php:7.4-fpm-alpine
 
 # Install Make
-RUN apk add gcc g++ make autoconf git imagemagick-dev pkgconfig
+RUN apk add gcc \
+            g++ \
+            make \
+            autoconf \
+            git \
+            imagemagick-dev \
+            pkgconfig
 
-#Install Imagick
-RUN pecl install imagick && docker-php-ext-enable imagick
+# Install Exif
+RUN docker-php-ext-install exif && \
+     docker-php-ext-enable exif
+
+# Install Imagick
+RUN pecl install imagick && \
+    docker-php-ext-enable imagick
 
 # Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -13,10 +24,12 @@ RUN php -r "unlink('composer-setup.php');"
 RUN ln -s /var/www/html/composer.phar /usr/bin/composer
 
 # Install NPM
-RUN apk add nodejs npm
+RUN apk add nodejs \
+            npm
 
 # Install Rsync and OpenSSH
-RUN apk add rsync openssh
+RUN apk add rsync \
+            openssh
 
 # Install Python 2.7
 RUN apk add python
