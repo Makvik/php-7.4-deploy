@@ -7,7 +7,12 @@ RUN apk add gcc \
             autoconf \
             git \
             imagemagick-dev \
-            pkgconfig
+            pkgconfig \
+            libxml2-dev
+
+# Install Soap
+RUN docker-php-ext-install soap && \
+     docker-php-ext-enable soap
 
 # Install Exif
 RUN docker-php-ext-install exif && \
