@@ -1,14 +1,19 @@
 FROM php:7.4-fpm-alpine
 
 # Install Make
-RUN apk add gcc \
-            g++ \
-            make \
-            autoconf \
-            git \
-            imagemagick-dev \
-            pkgconfig \
-            libxml2-dev
+RUN apk --update add gcc \
+    g++ \
+    make \
+    autoconf \
+    git \
+    imagemagick-dev \
+    pkgconfig \
+    libxml2-dev \
+    python2 \
+    rsync \
+    openssh \
+    nodejs \
+    npm
 
 # Install Soap
 RUN docker-php-ext-install soap && \
@@ -27,17 +32,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN ln -s /var/www/html/composer.phar /usr/bin/composer
-
-# Install NPM
-RUN apk add nodejs \
-            npm
-
-# Install Rsync and OpenSSH
-RUN apk add rsync \
-            openssh
-
-# Install Python 2.7
-RUN apk add python
 
 # Clear
 RUN docker-php-source delete && rm -rf /tmp/* /var/cache/apk/*
