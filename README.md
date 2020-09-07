@@ -8,7 +8,7 @@
 
 **Usage in GitLabCI:**
 ```yml
-	image: makvik/php-7.4-deploy:latest
+image: makvik/php-7.4-deploy:latest
 ```
 
 **Full Example usage in a GitLabCI:**
