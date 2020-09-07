@@ -7,6 +7,12 @@ RUN apk --update add gcc \
     autoconf \
     git \
     imagemagick-dev \
+    freetype \
+    libpng \
+    libjpeg-turbo \
+    freetype-dev \
+    libpng-dev \
+    libjpeg-turbo-dev \
     pkgconfig \
     libxml2-dev \
     python2 \
@@ -22,6 +28,11 @@ RUN docker-php-ext-install soap && \
 # Install Exif
 RUN docker-php-ext-install exif && \
      docker-php-ext-enable exif
+
+# Install GD
+RUN docker-php-ext-configure gd && \
+    docker-php-ext-install gd && \
+    docker-php-ext-enable gd
 
 # Install Imagick
 RUN pecl install imagick && \
