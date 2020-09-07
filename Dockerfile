@@ -15,11 +15,17 @@ RUN apk --update add gcc \
     libjpeg-turbo-dev \
     pkgconfig \
     libxml2-dev \
+    libzip-dev \
     python2 \
     rsync \
     openssh \
     nodejs \
     npm
+
+# Install Zip
+RUN docker-php-ext-configure zip && \
+    docker-php-ext-install zip && \
+    docker-php-ext-enable zip
 
 # Install Soap
 RUN docker-php-ext-install soap && \
