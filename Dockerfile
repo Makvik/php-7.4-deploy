@@ -44,6 +44,10 @@ RUN docker-php-ext-configure gd && \
 RUN pecl install imagick && \
     docker-php-ext-enable imagick
 
+# Install MongoDB
+RUN pecl install mongodb && \
+    docker-php-ext-enable mongodb
+
 # Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
