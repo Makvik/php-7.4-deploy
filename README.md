@@ -24,3 +24,4 @@ image: makvik/php-7.4-deploy:latest
 3. Node.js|Npm - 12.18.3|6.14.6
 4. Python - 2.7
 5. Rsync - 3.1.3
+6. Chromium - https://github.com/pocketjoso/penthouse
